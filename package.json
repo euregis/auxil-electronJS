@@ -1,0 +1,16 @@
+{
+  "name": "auxil-electronjs",
+  "version": "1.0.0",
+  "description": "Aplicação para melhor produtividade da execução de tarefas repetitivas",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^28.2.3"
+  }
+}
