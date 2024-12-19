@@ -5,12 +5,16 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "nodemon --watch . --exec electron ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "electron": "^28.2.3"
+  },
+  "dependencies": {
+    "sqlite-async": "^1.2.0",
+    "sqlite3": "^5.1.7"
   }
 }
