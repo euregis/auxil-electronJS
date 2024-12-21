@@ -1,6 +1,6 @@
 const { app, BrowserWindow, globalShortcut, Tray, Menu, screen, dialog } = require('electron');
 const path = require('path');
-const { db, createTable, insertProcess, getAllProcess, updateProcess, deleteProcess } = require('./database');
+const { db, insertProcess, getAllProcess, updateProcess, deleteProcess } = require('./database');
 
 let mainWindow;
 let tray;
@@ -19,6 +19,10 @@ function ExibeOculta(exibeTela) {
 
         if (exibeTela) {
             mainWindow.show(); // Exibe a janela
+            console.log('Foco definido');
+            mainWindow.webContents.executeJavaScript(`
+                document.getElementById('txtPesquisa').focus();
+            `).catch(err => console.error('Erro ao definir foco:', err));
         } else {
             mainWindow.hide(); // Oculta a janela
         }
@@ -63,7 +67,7 @@ function createWindow() {
         height: alturaTela,
         resizable: true,
         webPreferences: {
-            preload: path.join(__dirname, 'renderer.js'),
+            // preload: path.join(__dirname, 'renderer.js'),
             nodeIntegration: true,
             contextIsolation: false
         },
@@ -112,25 +116,25 @@ function createWindow() {
     });
 
     // Registra hotkey para esconder a janela
-    mainWindow.webContents.on('before-input-event', (event, input) => {
-        if (input.key === 'Escape') {
-            ExibeOculta(false);
-        }
-    });
+    // mainWindow.webContents.on('before-input-event', (event, input) => {
+    //     if (input.key === 'Escape') {
+    //         ExibeOculta(false);
+    //     }
+    // });
     // debugger; // A execução será pausada aqui
 
     mainWindow.webContents.openDevTools();
     mainWindow.maximize();
 }
 
-function UpgradeDatabase() {
-    createTable();
-}
+// function UpgradeDatabase() {
+//     createTable();
+// }
 
 // Inicialização do app
 app.on('ready', () => {
     createWindow(); // Cria a janela principal
-    UpgradeDatabase();
+    // UpgradeDatabase();
 });
 
 // Fechar quando a janela for fechada

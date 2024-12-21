@@ -51,6 +51,15 @@
             padding: 4px;
             line-height: 1.2
         }
+
+        .item-list {
+            cursor: pointer;
+            background-color: #fff;
+        }
+
+        .item-list.selected {
+            background-color: lightblue;
+        }
     </style>
 </head>
 
@@ -59,7 +68,7 @@
         <div class="search-container">
             <input type="text" id="txtPesquisa" placeholder="Digite para pesquisar">
         </div>
-        <div id="lstItens"></div>
+        <div id="lstItens" tabindex="0"></div>
     </div>
 
     <script src="renderer.js"></script>
